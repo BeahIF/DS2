@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>FOFOCA</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      
+
+    
+        <script type="text/javascript" src="/static/script.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+  
+<script type="text/javascript">
+  function loadDoc2() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+        //myFunction(this);
+        //alert("oi " + xhttp.responseText);
+        document.getElementById('demo').innerHTML = xhttp.responseText; 
+    }
+  };
+  xhttp.open("GET", "/noticia_por_jornalista", true);
+  xhttp.send();
+}
+
+
+</script>
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">FOFOCA.COM</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="/leitor/tela_adicionar">Primeiro cadastro</a></li>
+      <li><a href="/logar">Logar</a></li>
+      <li><a href="/qual_perfil">Meu perfil</a></li>
+        <a href="/tela_email" class="btn btn-danger navbar-btn">Quero receber email</a></li>s
+    <li>
+       
+   
+    <a href="/logout" class="btn btn-danger navbar-btn">Sair</a></li>
+       </ul>
+  </div>
+</nav>
+
+
+
+<br>
+
+<div class="container">
+  <div class="row">
+ 
+    
+    <div class="col-sm-9">
+      
+   <table class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Titulo</th>
+        <th>Texto</th>
+        <th>Data</th>
+        <th>Assunto</th>
+
+      </tr>
+    </thead>
+      {% for noticia in vetNoticia %}
+      <tbody>
+
+   
+      <tr class="info">
+        <td>{{noticia.id}}</td>
+        <td>{{noticia.titulo}}</td>
+        <td>{{noticia.texto}}</td>
+        <td>{{noticia.data}}</td>
+        <td>{{noticia.assunto}}</td>
+
+        <td><a href="/comentarios/{{noticia.id}}" class="btn btn-info">Ver comentarios</a></td>
+        <td><a href="/adicionar_comentario/{{noticia.id}}" class="btn btn-info">Adicionar comentario</a></td>
+  
+       </tr>
+        
+    </tbody>
+  {% endfor %}
+  
+  </table>
+    </div>
+  </div>
+</div>
+  
+<div id = "dados" style="margin-left: 120px">
+  <button type="button" class="btn btn-info" onclick="return loadDoc()"> Ver dados </button>
+</div>
+<div id = "pesquisa" style="margin-left: 120px">
+  <br> 
+  <a href="/pesquisa" class="btn btn-info"> Buscar Noticias </a>
+</div>
+
+<h1>Listar noticia por jornalista</h1>
+
+<button type="button" onclick="loadDoc2()">Listar</button>
+<br><br>
+<table id="demo"></table>
+
+</body>
+
+
+</html>

@@ -1,0 +1,66 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+	  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	  	<link rel="stylesheet" href="style.css">
+	 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+	  	<script src="script.js"></script>
+		<title> Gerencia </title>
+		
+
+	</head>
+
+<body>
+<div class="container">
+  <h2>Gerenciamento de Noticias</h2>
+   <br><br>
+
+  <button onclick="location.href='/jornalista/tela_adicionar_noticia'" type="button" class="btn btn-info">Adicionar Nova Noticia</button>      
+  <button onclick="location.href='/jornalista/tela_adicionar_assunto'" type="button" class="btn btn-info">Adicionar Novo Assunto</button> 
+    <a href="/jornalista/editar_perfil/{{id}}"  class="btn btn-info">Editar meu perfil</a> 
+ <div class="alert alert-success">
+      <a href="/jornalista/ver_perfil/{{id}}"  class="btn btn-info">Ver meu perfil</a> 
+ <div class="alert alert-success">
+    <strong> {{mensagem}}</strong>
+  </div>
+
+   <table class="table">
+    <thead>
+      <tr>
+      	<th>Id</th>
+        <th>Titulo</th>
+        <th>Texto</th>
+        <th>Data</th>
+        <th>Assunto</th>
+
+      </tr>
+    </thead>
+    	{% for noticia in vetNoticia %}
+    	<tbody>
+
+   
+      <tr class="info">
+      	<td>{{noticia.id}}</td>
+        <td>{{noticia.titulo}}</td>
+        <td>{{noticia.texto}}</td>
+        <td>{{noticia.data}}</td>
+        <td>{{noticia.assunto}}</td>
+        <td><a href="/jornalista/comentarios/{{noticia.id}}" class="btn btn-info">Ver comentarios</a></td>
+       	<td><a href="/jornalista/excluir_noticia/{{noticia.id}}"  class="btn btn-info">Excluir</a></td>   
+       	<td><a href="/jornalista/tela_editar_noticia/{{noticia.id}}" class="btn btn-info">Editar</a></td>   
+       </tr>
+        
+    </tbody>
+	{% endfor %}
+  
+  </table>
+   <td><a href="/logout"  class="btn btn-info">Sair</a></td>
+    <td><a href="/"  class="btn btn-info">Voltar</a></td>    
+</div>
+</body>
+
+
+</html>

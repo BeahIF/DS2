@@ -1,0 +1,67 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+	  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	  	<link rel="stylesheet" href="style.css">
+	 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+	  	<script src="script.js"></script>
+		<title> Login </title>
+		
+
+	</head>
+
+<body>
+<div class="container">
+  <h2>Gerenciamento de jornalistas</h2>
+   <br><br>
+
+  <button onclick="location.href='/admin/tela_adicionar'" type="button" class="btn btn-info">Adicionar Novo</button>      <button onclick="location.href='/admin/tela_adicionar_estagiario'" type="button" class="btn btn-info">Adicionar Novo Estagiario</button>   
+
+ <div class="alert alert-success">
+
+    <strong> {{mensagem}}</strong>
+
+  </div>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+   <table class="table">
+    <thead>
+      <tr>
+      	<th>Id</th>
+        <th>Login</th>
+        <th>Nome</th>
+        
+      </tr>
+    </thead>
+    	{% for jornalista in vetJornalista %}
+    	<tbody>
+
+   
+      <tr class="info">
+      	<td>{{jornalista.id}}</td>
+        <td>{{jornalista.login}}</td>
+        <td>{{jornalista.nome}}</td>
+       	<td><a href="/admin/excluir/{{jornalista.id}}"  class="btn btn-info">Excluir</a></td>   
+       	<td><a href="/admin/tela_editar/{{jornalista.id}}" class="btn btn-info">Editar</a></td>   
+       </tr>
+        
+    </tbody>
+	{% endfor %}
+  
+  </table>
+ <a href="/"  class="btn btn-info">Sair</a>   
+</div>
+</body>
+
+
+</html>

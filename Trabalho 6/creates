@@ -1,0 +1,41 @@
+﻿CREATE TABLE noticia(
+	id serial primary key,
+	titulo varchar,
+	texto varchar, 
+	data date, 
+	id_assunto int,
+	FOREIGN KEY (id_assunto) references assunto (id),
+	id_jornalista int, 
+	FOREIGN KEY (id_jornalista) references jornalista(id)
+);
+
+CREATE TABLE comentario(
+	id serial primary key,
+	texto varchar, 
+	data  date, 
+	id_leitor int, 
+	FOREIGN KEY (id_leitor) references leitor(id), 
+	id_noticia int, 
+	FOREIGN KEY (id_noticia) references noticia(id)
+);
+
+CREATE TABLE assunto(
+	id serial primary key, 
+	nome varchar
+);
+
+CREATE TABLE jornalista(
+	id serial primary key,
+	login varchar, 
+	senha varchar,
+	nome varchar
+
+);
+
+CREATE TABLE leitor(
+	id serial primary key,
+	login varchar, 
+	senha varchar,
+	nome varchar
+
+);

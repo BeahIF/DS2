@@ -1,0 +1,62 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+	  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	  	<link rel="stylesheet" href="style.css">
+	 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+	  	<script src="script.js"></script>
+		<title> Login </title>
+		
+
+	</head>
+
+<body>
+<div class="container">
+  <h2>Comentarios</h2>
+   <br><br>
+
+  
+
+ <div class="alert alert-success">
+    <strong> {{mensagem}}</strong>
+  </div>
+   <table class="table">
+    <thead>
+      <tr>
+      	<th>Id</th>
+        <th>Texto</th>
+        <th>Data</th>
+        <th>Leitor</th>
+        
+      </tr>
+    </thead>
+    	{% for comentario in comentarios %}
+    	<tbody>
+
+   
+      <tr class="info">
+      	<td>{{comentario.id}}</td>
+        <td>{{comentario.texto}}</td>
+        <td>{{comentario.data}}</td>
+          <td>{{comentario.leitor}}</td>
+          {%if nome_leitor == comentario.leitor%}
+              <td><a href="/jornalista/excluir_comentario/{{comentario.id}}"  class="btn btn-info">Excluir</a></td>
+          {%endif%}
+          {% if perfil == "jornalista" %}
+        <td><a href="/jornalista/excluir_comentario/{{comentario.id}}"  class="btn btn-info">Excluir</a></td>   {%endif%}
+       	   
+       </tr>
+        
+    </tbody>
+	{% endfor %}
+  
+  </table>
+ <button onclick="location.href='/'" type="button" class="btn btn-info">Voltar</button>   
+</div>
+</body>
+
+
+</html>
